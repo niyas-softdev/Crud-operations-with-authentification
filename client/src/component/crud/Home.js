@@ -32,7 +32,7 @@ function BasicExample() {
     const url = `http://localhost:5000/delete/${id}`;
     try {
       const res = await axios.delete(url);
-      if (res.status === 200) {
+      if (res.status === 201) {
         toast.success("Successfully Deleted", { autoClose: 2000 });
         setUsers(users.filter((user) => user._id !== id));
       }

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -24,12 +24,13 @@ function Login() {
     await axios
       .post(url, formData)
       .then((res) => {
-        console.log(res);
+        // console.log(res.data.return);
+        const userData = res?.data?.return;
+        localStorage.setItem("userData", JSON.stringify(userData));
         if (res.status === 200) {
           toast("Login Success", { type: "success", autoClose: 2000 });
-          navigate("/home");
+           navigate("/home");
         }
-       
       })
       .catch((err) => {
         // console.log(err.response.data.message);

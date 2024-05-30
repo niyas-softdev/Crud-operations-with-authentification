@@ -70,8 +70,17 @@ app.post("/login", async (req, res) => {
     return res.status(404).json({ message: "user not found" });
   }
 
+  const userData = {
+    id: user._id,
+    name: user.name,
+    avatar: user.avatar,
+    email: user.email
+  };
+
   if (password === user?.password) {
-    return res.status(200).json({ message: "Successfully login" });
+    return res
+      .status(200)
+      .json({ message: "Successfully login", return: userData });
   }
   if (password !== user?.password) {
     return res.status(404).json({ message: "wrong password" });
